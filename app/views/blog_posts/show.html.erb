@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<div class="well well-lg">
+	<h2><%= @blog_post.title %></h2>
+	<p><strong>@<%= @blog_post.user.username %></strong></p>
+	<p><%= @blog_post.blog_entry %></p>
+
+	<% if current_user.id == @blog_post.user_id %>
+		<p>
+			<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> | <%= link_to 'Destroy', @blog_post, method: :delete, data: { confirm: 'Are you sure?' } %>
+		</p>
+	<% end %>
+
+</div>
+
+<div class="well">
+	<%= render 'comments/form' %>
+</div>
+
+<h4>Comments</h4>
+<div class="panel-body">
+	<% @blog_post.comments.each do |comment| %>
+	  <p><%= comment.user.username %> said...</p>
+	  <p><%= comment.comment_entry %></p>
+	<% end %>
+</div>
+
+<p>
+	<%= link_to 'Back', blog_posts_path %>
+</p>
+
+
+          
