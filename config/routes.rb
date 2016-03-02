@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :blog_posts
 
   root 'blog_posts#index'
+
+  get 'gift_given' => 'blog_posts#gift_given'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

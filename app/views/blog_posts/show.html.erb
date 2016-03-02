@@ -3,7 +3,15 @@
 	<h2><%= @blog_post.title %></h2>
 	<p><strong>@<%= @blog_post.user.username %></strong></p>
 	<p><%= @blog_post.blog_entry %></p>
+	<p>
+    <%= image_tag @blog_post.avatar.url, alt: "Contact Pic", width: "250" %>
+	</p>
 
+	<%= link_to gift_given_path(id: @blog_post.id) do %>
+		<i class="fa fa-gift"></i> Give Nermal a Gift
+	<% end %>
+	
+	<p>Nermal has <%= @blog_post.gifts %> gifts</p>
 	<% if current_user.id == @blog_post.user_id %>
 		<p>
 			<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> | <%= link_to 'Destroy', @blog_post, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -15,15 +23,15 @@
 <div class="well">
 	<%= render 'comments/form' %>
 </div>
-
+<div class="well">
 <h4>Comments</h4>
 <div class="panel-body">
 	<% @blog_post.comments.each do |comment| %>
 	  <p><%= comment.user.username %> said...</p>
 	  <p><%= comment.comment_entry %></p>
 	<% end %>
+	</div>
 </div>
-
 <p>
 	<%= link_to 'Back', blog_posts_path %>
 </p>
